@@ -1,0 +1,26 @@
+kind: Deployment
+apiVersion: extensions/v1beta1
+metadata:
+  name: jenkins-master
+spec:
+  replicas: 1
+  template:
+    metadata:
+      name: jenkins-master
+      labels:
+        name: jenkins-master
+    spec:
+      containers:
+      - name: jenkins-master
+        image: myregistry.azurecr.io/infrastructure/jenkins-master:1.0.0
+        imagePullPolicy: Always
+        readinessProbe:
+          tcpSocket:
+            port: 8080
+          initialDelaySeconds: 20
+          timeoutSeconds: 5
+        ports:
+        - name: jenkins-web
+          containerPort: 8080
+        - name: jenkins-agent
+          containerPort: 50000
