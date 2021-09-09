@@ -12,7 +12,7 @@ spec:
     spec:
       containers:
       - name: jenkins-master
-        image: myregistry.azurecr.io/infrastructure/jenkins-master:1.0.0
+        image: artifacts.st.com/docker-public/node:14-alpine
         imagePullPolicy: Always
         readinessProbe:
           tcpSocket:
